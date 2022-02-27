@@ -1,0 +1,23 @@
+{
+  "name": "traverse-folder",
+  "version": "1.0.0",
+  "description": "Traverse a folder recursively, call a callback method for all files and folders",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cfe84/recursive-fs.git"
+  },
+  "keywords": [
+    "fs",
+    "recursive"
+  ],
+  "author": "Charles FEVAL",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cfe84/recursive-fs/issues"
+  },
+  "homepage": "https://github.com/cfe84/recursive-fs#readme"
+}
