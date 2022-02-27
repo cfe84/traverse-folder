@@ -1,5 +1,5 @@
 {
-  "name": "traverse-directory",
+  "name": "traverse-dir",
   "version": "1.0.0",
   "description": "Traverse a directory recursively, call a callback method for all files and directorys",
   "main": "index.js",
