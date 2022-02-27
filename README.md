@@ -1,26 +1,26 @@
-Traverses a folder recursively. 
+Traverses a directory recursively. 
 
 ```js
-const { traverseFolder } = require("traverse-folder");
-traverseFolder(".",
+const { traverseDirectory } = require("traverse-directory");
+traverseDirectory(".",
   (file) => console.log(file.name), 
-  (folder) => { 
-    console.log(folder.name)
+  (directory) => { 
+    console.log(directory.name)
     return true;
   )
 );
 ```
 
-Calls `fileCallback` for each file and `folderCallback` for each folder
+Calls `fileCallback` for each file and `directoryCallback` for each directory
 
 The `fileCallback` callback function is called for each files. An object is passed as parameters with the following fields:
  - `name`: The filename
- - `relativeFolderPath`: The file's folder relative path
+ - `relativeDirectoryPath`: The file's directory relative path
  - `relativeFilePath`: The file's relative path
- - `fullFolderPath`: The file's folder full path
+ - `fullDirectoryPath`: The file's directory full path
  - `fullFilePath`: The file's full path
 
-The `folderCallback` is optional. It must return true if folder should be parsed. If the `folderCallback` is not provided, all folders will be parsed. An object is passed as parameter of the callback:
- - `name`: The folder name
- - `relativePath`: The folder's relative path
- - `fullPath`: The folder's full path
+The `directoryCallback` is optional. It must return true if directory should be parsed. If the `directoryCallback` is not provided, all directorys will be parsed. An object is passed as parameter of the callback:
+ - `name`: The directory name
+ - `relativePath`: The directory's relative path
+ - `fullPath`: The directory's full path

@@ -1,3 +1,3 @@
-const { traverseFolder } = require("./index")
+const { traverseDirectory } = require("./index")
 
-traverseFolder("c:\\trash", ({ name, fullFilePath }) => console.log(`${name}: ${fullFilePath}`))
+traverseDirectory("c:\\trash", ({ name, fullFilePath }) => console.log(`${name}: ${fullFilePath}`))

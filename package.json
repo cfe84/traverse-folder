@@ -1,7 +1,7 @@
 {
-  "name": "traverse-folder",
+  "name": "traverse-directory",
   "version": "1.0.0",
-  "description": "Traverse a folder recursively, call a callback method for all files and folders",
+  "description": "Traverse a directory recursively, call a callback method for all files and directorys",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

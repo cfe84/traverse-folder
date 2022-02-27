@@ -2,47 +2,47 @@ const fs = require("fs")
 const path = require("path")
 
 /**
- * Traverse a folder, call `fileCallback` for each file and `folderCallback` for each folder
- * @param {string} root Folder that will be traversed
+ * Traverse a directory, call `fileCallback` for each file and `directoryCallback` for each directory
+ * @param {string} root Directory that will be traversed
  * @param {function} fileCallback Callback method called for each files. An object is passed as parameters with the following fields:
  *  - `name`: The filename
- *  - `relativeFolderPath`: The file's folder relative path
+ *  - `relativeDirectoryPath`: The file's directory relative path
  *  - `relativeFilePath`: The file's relative path
- *  - `fullFolderPath`: The file's folder full path
+ *  - `fullDirectoryPath`: The file's directory full path
  *  - `fullFilePath`: The file's full path
- * @param {function} folderCallback Optional. Return true if folder should be parsed. If not specified, all folders will be parsed. An object is passed as parameter:
- *  - `name`: The folder name
- *  - `relativePath`: The folder's relative path
- *  - `fullPath`: The folder's full path
+ * @param {function} directoryCallback Optional. Return true if directory should be parsed. If not specified, all directorys will be parsed. An object is passed as parameter:
+ *  - `name`: The directory name
+ *  - `relativePath`: The directory's relative path
+ *  - `fullPath`: The directory's full path
  */
-function traverseFolder(root, fileCallback, folderCallback = null) {
-  function recurseInFolder(relativeFolderPath) {
-    const fullFolderPath = relativeFolderPath ? path.join(root, relativeFolderPath) : root
-    const files = fs.readdirSync(fullFolderPath)
+function traverseDirectory(root, fileCallback, directoryCallback = null) {
+  function recurseInDirectory(relativeDirectoryPath) {
+    const fullDirectoryPath = relativeDirectoryPath ? path.join(root, relativeDirectoryPath) : root
+    const files = fs.readdirSync(fullDirectoryPath)
     files.forEach(name => {
-      const relativeFilePath = path.join(relativeFolderPath, name)
+      const relativeFilePath = path.join(relativeDirectoryPath, name)
       const fullFilePath = path.join(root, relativeFilePath)
       const stat = fs.lstatSync(fullFilePath)
       if (stat.isFile()) {
         fileCallback({
           name,
-          relativeFolderPath,
+          relativeDirectoryPath,
           relativeFilePath,
           fullFilePath,
-          fullFolderPath
+          fullDirectoryPath
         })
       } else {
-        if (!folderCallback || folderCallback({
+        if (!directoryCallback || directoryCallback({
           name,
           relativePath: relativeFilePath,
           fullPath: fullFilePath
         })) {
-          recurseInFolder(relativeFilePath)
+          recurseInDirectory(relativeFilePath)
         }
       }
     })
   }
-  recurseInFolder(".")
+  recurseInDirectory(".")
 }
 
-exports.traverseFolder = traverseFolder
+exports.traverseDirectory = traverseDirectory
